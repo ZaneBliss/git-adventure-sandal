@@ -1,7 +1,11 @@
 use std::{
-    env::{self, set_current_dir},
+    env::set_current_dir,
     path::Path,
 };
+
+use common::restore_root_dir;
+
+mod common;
 
 #[test]
 fn sanity_check_with_rspec() -> Result<(), Box<dyn std::error::Error>> {
@@ -17,7 +21,7 @@ fn sanity_check_with_rspec() -> Result<(), Box<dyn std::error::Error>> {
         insta::assert_snapshot!(String::from_utf8(cmd.output().unwrap().stdout).unwrap());
     });
 
-    set_current_dir(Path::new(&env::var("CARGO_MANIFEST_DIR").unwrap()))?;
+    restore_root_dir()?;
 
     Ok(())
 }
@@ -36,7 +40,7 @@ fn not_enough_commits() -> Result<(), Box<dyn std::error::Error>> {
         insta::assert_snapshot!(String::from_utf8(cmd.output().unwrap().stdout).unwrap());
     });
 
-    set_current_dir(Path::new(&env::var("CARGO_MANIFEST_DIR").unwrap()))?;
+    restore_root_dir()?;
 
     Ok(())
 }
