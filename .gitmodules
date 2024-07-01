@@ -1,0 +1,6 @@
+[submodule "tests/fixtures/not_enough_commits"]
+	path = tests/fixtures/not_enough_commits
+	url = https://example.com
+[submodule "tests/fixtures/sanity_check_with_rspec"]
+	path = tests/fixtures/sanity_check_with_rspec
+	url = https://example.com
